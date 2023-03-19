@@ -22,7 +22,7 @@ try:
         pathChromedriver = '/Users/home/coding/chromedriver' 
         # 맥북에서 테스트 할 때 사용
     elif systemOS == "Linux":
-        pathChromedriver = '/home/ubuntu/chromedriver'
+        pathChromedriver = './chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
     webdriver_options.add_argument('--headless')
