@@ -85,42 +85,47 @@ try:
 
 
     while roofCheck < 1:
-        # 오늘 날짜 확인
-        today = datetime.date.today()
-        startTime = time.time()
+        try:
+            # 오늘 날짜 확인
+            today = datetime.date.today()
+            startTime = time.time()
 
-        campName = ['마리노캠핑장']
-        marinoDate = []
-        marinoTerm = []
-        marinoChatId = []
-        marinoList = []
+            campName = ['마리노캠핑장']
+            marinoDate = []
+            marinoTerm = []
+            marinoChatId = []
+            marinoList = []
 
-        session = boto3.session.Session(profile_name='marinoCamp')
+            session = boto3.session.Session(profile_name='marinoCamp')
 
-        dynamodb = session.resource('dynamodb')  # bucket 목록
-        table = dynamodb.Table('campInfo')
+            dynamodb = session.resource('dynamodb')  # bucket 목록
+            table = dynamodb.Table('campInfo')
 
-        
-        if __name__ == '__main__':
-            marinoDb = sorted(dbScan('마리노캠핑장'), key=lambda item:item['chat_id'])
-            marinoDate = dateExtract(marinoDb)
-            marinoList = listSearch(marinoDb)
+            
+            if __name__ == '__main__':
+                marinoDb = sorted(dbScan('마리노캠핑장'), key=lambda item:item['chat_id'])
+                marinoDate = dateExtract(marinoDb)
+                marinoList = listSearch(marinoDb)
 
-        # 마리노캠핑장 검색
-        for index in range(len(marinoList)):
-            dateList = marinoList[index]['date']
-            for date in dateList:
-                mainID = marinoList[index]['id']
-                searchDate = changeDateType(date)
-                if (today <= searchDate['dateType']):
-                    marino.marinoSiteSearch(driver, mainID, searchDate)
+            # 마리노캠핑장 검색
+            for index in range(len(marinoList)):
+                dateList = marinoList[index]['date']
+                for date in dateList:
+                    mainID = marinoList[index]['id']
+                    searchDate = changeDateType(date)
+                    if (today <= searchDate['dateType']):
+                        marino.marinoSiteSearch(driver, mainID, searchDate)
 
-        # endTime = time.time()
-        # measureTime = endTime - startTime
+            # endTime = time.time()
+            # measureTime = endTime - startTime
 
-        # 시간 측정
-        # print("시간")
-        # print(measureTime)
+            # 시간 측정
+            # print("시간")
+            # print(measureTime)
+        except Exception as e:
+                asyncio.run(teleFunc.telegramSimpleMessage('1003456250', '프로그램 오류'))
+                print(datetime.datetime.now(),"===================================")
+                print(e)
 
 except Exception as e:
     asyncio.run(teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지'))

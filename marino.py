@@ -11,16 +11,18 @@ today = datetime.date.today()
 nextMonth = today + relativedelta(months=1)
 
 def connectWebsite(driver):
+    try: 
+        url = 'https://www.yeongdo.go.kr/marinocamping/00003/00015/00028.web'
 
-    url = 'https://www.yeongdo.go.kr/marinocamping/00003/00015/00028.web'
+        driver.get(url)
+        time.sleep(0.3)
 
-    driver.get(url)
-    time.sleep(0.3)
+        xpath = "//*[@id='campNight1']"
+        driver.find_element(By.XPATH, xpath).click()
 
-    xpath = "//*[@id='campNight1']"
-    driver.find_element(By.XPATH, xpath).click()
-
-    time.sleep(0.3)
+        time.sleep(0.3)
+    except NoSuchElementException:
+        print("error")
 
 def siteSearch(driver, chatId, date):
     html = driver.page_source
