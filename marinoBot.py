@@ -3,8 +3,9 @@ from botocore.exceptions import ClientError
 from pprint import pprint
 from boto3.dynamodb.conditions import Key, Attr
 import marino
-from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import datetime
 import telegramCustomFunc as teleFunc
@@ -39,7 +40,8 @@ try:
     webdriver_options.add_argument(
         'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36')
 
-    driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
+    # driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
     def dbScan(campName, dynamodb=None):
         try:
