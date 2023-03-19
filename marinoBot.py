@@ -110,8 +110,8 @@ try:
             # 마리노캠핑장 검색
             for index in range(len(marinoList)):
                 dateList = marinoList[index]['date']
+                mainID = marinoList[index]['id']
                 for date in dateList:
-                    mainID = marinoList[index]['id']
                     searchDate = changeDateType(date)
                     if (today <= searchDate['dateType']):
                         marino.marinoSiteSearch(driver, mainID, searchDate)
@@ -126,6 +126,7 @@ try:
             asyncio.run(teleFunc.telegramSimpleMessage('1003456250', '프로그램 오류'))
             print(datetime.datetime.now(),"===================================")
             print(e)
+            time.sleep(300)
             pass
 
 except Exception as e:
