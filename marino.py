@@ -45,7 +45,7 @@ def activeDayCheck(driver, chatId, date):
         if len(dayText) == 1:
             dayTextcheck = '0' + dayText
         # 예약 가능한 날짜 모음
-        activeDayGroup.append(dayText)
+        activeDayGroup.append(dayTextcheck)
 
     # 예약 가능한 날짜에 검색 원하는 날짜가 있으면 검색 시작
     if date['startDateDay'] in activeDayGroup:
