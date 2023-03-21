@@ -26,7 +26,7 @@ try:
         pathChromedriver = './chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options.add_argument('--headless')
+    # webdriver_options.add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')

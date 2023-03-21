@@ -42,13 +42,20 @@ def activeDayCheck(driver, chatId, date):
     for activeDay in active:
         dayText = activeDay.get_text().strip()
         # 날짜를 2글자로 수정
+        dayTextcheck = ''
         if len(dayText) == 1:
             dayTextcheck = '0' + dayText
+            activeDayGroup.append(dayTextcheck)
+        else:
+            activeDayGroup.append(dayText)
+            
         # 예약 가능한 날짜 모음
-        activeDayGroup.append(dayTextcheck)
 
     # 예약 가능한 날짜에 검색 원하는 날짜가 있으면 검색 시작
     if date['startDateDay'] in activeDayGroup:
+        if date['startDateDay'][0] == '0':
+            date['startDateDay'] = date['startDateDay'][1]
+
         xpath = "//*[@id='date" + date['startDateDay'] + "']/a"
         driver.find_element(By.XPATH, xpath).click()
         time.sleep(1)
