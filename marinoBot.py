@@ -123,10 +123,9 @@ try:
             # print("시간")
             # print(measureTime)
         except Exception as e:
-            asyncio.run(teleFunc.telegramSimpleMessage('1003456250', '프로그램 오류'))
+            asyncio.run(teleFunc.telegramSimpleMessage('1003456250', e))
             print(datetime.datetime.now(),"===================================")
             print(e)
-            time.sleep(300)
             pass
 
 except Exception as e:
