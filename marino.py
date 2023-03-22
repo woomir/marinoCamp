@@ -15,12 +15,12 @@ def connectWebsite(driver):
     url = 'https://www.yeongdo.go.kr/marinocamping/00003/00015/00028.web'
 
     driver.get(url)
-    time.sleep(2)
+    time.sleep(5)
 
-    xpath = "//*[@id='campNight1']"
-    driver.find_element(By.XPATH, xpath).click()
+    # xpath = "//*[@id='campNight1']"
+    # driver.find_element(By.XPATH, xpath).click()
 
-    time.sleep(1)
+    # time.sleep(3)
 
 def siteSearch(driver, chatId, date):
     html = driver.page_source
@@ -58,16 +58,16 @@ def activeDayCheck(driver, chatId, date):
 
         xpath = "//*[@id='date" + date['startDateDay'] + "']/a"
         driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
+        time.sleep(3)
         # 오토사이트 선택
         xpath = "//*[@id='siteGubun2']"
         driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
+        time.sleep(3)
         siteSearch(driver, chatId, date)
         # 일반사이트 선택
         xpath = "//*[@id='siteGubun3']"
         driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
+        time.sleep(3)
         siteSearch(driver, chatId, date)
 
 def nextMonthCheck(driver, month):
@@ -86,7 +86,7 @@ def marinoSiteSearch(driver, chatId, date):
     if (nextMonthCheck(driver, date['startDateMonth'])):
         xpath = "//*[@id='calendar']/a[2]"
         driver.find_element(By.XPATH, xpath).click()
-        time.sleep(1)
+        time.sleep(3)
 
         activeDayCheck(driver, chatId, date)
 
