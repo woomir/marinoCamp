@@ -34,9 +34,6 @@ try:
     webdriver_options.add_argument('--no-sandbox')
     webdriver_options.add_argument('--disable-setuid-sandbox')
     webdriver_options.add_argument('--disable-dev-shm-usage')
-
-
-
     webdriver_options.add_argument(
         'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36')
 
@@ -83,7 +80,6 @@ try:
         int('20'+startDateYear), int(startDateMonth), int(startDateDay))
         return {'modDate': modDate, 'dateType':dateType, 'startDateYear': startDateYear, 'startDateMonth': startDateMonth, 'startDateDay': startDateDay}
 
-
     while roofCheck < 1:
         try:
             # 오늘 날짜 확인
@@ -101,7 +97,6 @@ try:
             dynamodb = session.resource('dynamodb')  # bucket 목록
             table = dynamodb.Table('campInfo')
 
-            
             if __name__ == '__main__':
                 marinoDb = sorted(dbScan('마리노캠핑장'), key=lambda item:item['chat_id'])
                 marinoDate = dateExtract(marinoDb)
@@ -116,12 +111,6 @@ try:
                     if (today <= searchDate['dateType']):
                         marino.marinoSiteSearch(driver, mainID, searchDate)
 
-            # endTime = time.time()
-            # measureTime = endTime - startTime
-
-            # 시간 측정
-            # print("시간")
-            # print(measureTime)
         except Exception as e:
             asyncio.run(teleFunc.telegramSimpleMessage('1003456250', "error"))
             print(datetime.datetime.now(),"===================================")

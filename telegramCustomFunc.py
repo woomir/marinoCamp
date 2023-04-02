@@ -1,5 +1,4 @@
 import telegram
-import asyncio
 
 with open("./token.txt") as f:
     lines = f.readlines()
