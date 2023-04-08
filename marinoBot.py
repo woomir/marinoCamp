@@ -13,7 +13,6 @@ import platform
 import asyncio
 
 try:
-    roofCheck = 0
     # 사용자 컴퓨터 OS 확인 후 설정값 반환
     systemOS = platform.system()
     pathChromedriver = ''
@@ -80,7 +79,7 @@ try:
         int('20'+startDateYear), int(startDateMonth), int(startDateDay))
         return {'modDate': modDate, 'dateType':dateType, 'startDateYear': startDateYear, 'startDateMonth': startDateMonth, 'startDateDay': startDateDay}
 
-    while roofCheck < 1:
+    while True:
         try:
             # 오늘 날짜 확인
             today = datetime.date.today()
@@ -112,7 +111,7 @@ try:
                         marino.marinoSiteSearch(driver, mainID, searchDate)
 
         except Exception as e:
-            asyncio.run(teleFunc.telegramSimpleMessage('1003456250', "error"))
+            # asyncio.run(teleFunc.telegramSimpleMessage('1003456250', "error"))
             print(datetime.datetime.now(),"===================================")
             print(e)
             pass
